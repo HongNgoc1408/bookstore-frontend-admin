@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light text-semibold" style="background-color: bisque;">
         <div class="container">
             <router-link :to="{ name: 'bookstore' }" class="navbar-brand nav-link">
                 Quản lý kho sách
@@ -32,11 +32,12 @@
                 </ul>
 
                 <div class="d-flex dropdown">
-                    <router-link v-if="userName" to="#" class="btn btn-secondary me-2" @click="confirmLogout">
+                    <router-link v-if="userName" to="#" class="btn btn-outline-warning text-dark me-2"
+                        @click="confirmLogout">
                         {{ userName }}
                     </router-link>
-                    <span v-else class="btn btn-secondary dropdown-toggle" type="button" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <span v-else class="btn btn-outline-warning text-dark dropdown-toggle" type="button" href="#"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Tài khoản
                     </span>
                 </div>

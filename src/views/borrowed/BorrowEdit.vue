@@ -11,6 +11,7 @@
 
 <script>
 import BorrowForm from "@/components/borrowed/BorrowForm.vue";
+import bookService from "@/services/book.service";
 import BorrowService from "@/services/borrow.service";
 
 export default {
@@ -44,8 +45,29 @@ export default {
         },
         async updateBorrow(data) {
             try {
+
+                if (data.status === 'Đang mượn') {
+                    for (const book of data.books) {
+                        const bookDetails = await bookService.get(book.bookId);
+                        if (bookDetails && (bookDetails.countInStock > 0)) {
+                            const updatedCountInStock = bookDetails.countInStock - book.quantity;
+                            const updatedQuantity = bookDetails.quantity + book.quantity;
+                            await bookService.update(book.bookId, { countInStock: updatedCountInStock, quantity: updatedQuantity });
+                        }
+                    }
+                } else if (data.status === 'Đã trả') {
+                    for (const book of data.books) {
+                        const bookDetails = await bookService.get(book.bookId);
+
+                        if (bookDetails && (bookDetails.quantity > 0)) {
+                            const updatedCountInStock = bookDetails.countInStock + book.quantity;
+                            const updatedQuantity = bookDetails.quantity - book.quantity;
+                            await bookService.update(book.bookId, { countInStock: updatedCountInStock, quantity: updatedQuantity });
+                        }
+                    }
+                }
                 await BorrowService.update(this.borrow._id, data);
-                this.message = "Thông tin đã được thay đổi.";
+                alert("Thông tin đã được thay đổi.");
                 this.$router.push({ name: "borrowed" });
             } catch (error) {
                 console.log(error);

@@ -13,11 +13,11 @@
                         <Field name="ngayMuon" type="date" class="form-control" v-model="borrowLocal.ngayMuon" />
                         <ErrorMessage name="ngayMuon" class="error-feedback" />
                     </div>
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="ngayTra"><strong>Ngày Trả</strong></label>
                         <Field name="ngayTra" type="date" class="form-control" v-model="borrowLocal.ngayTra" />
                         <ErrorMessage name="ngayTra" class="error-feedback" />
-                    </div> -->
+                    </div>
                     <div class="form-group">
                         <label for="status"><strong>Tình trạng</strong></label>
                         <select v-model="borrowLocal.status" class="form-control">
@@ -28,6 +28,7 @@
                         </select>
                     </div>
                 </div>
+                
                 <div class="col-md-8">
                     <div class="row" v-for="(book, index) in borrowLocal.books" :key="index">
                         <div class="col-md-9">
@@ -111,9 +112,9 @@ export default {
     },
     methods: {
         submitBorrow() {
-            console.log(this.borrowLocal);
+            // console.log(this.borrowLocal);
             this.$emit("submit:borrow", this.borrowLocal);
-            
+
         }
     },
 };
