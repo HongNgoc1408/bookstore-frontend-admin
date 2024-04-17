@@ -39,9 +39,9 @@
                     </h4>
                     <BookCard :book="activeBook" />
                     <router-link :to="{
-                    name: 'book.edit',
-                    params: { id: activeBook._id },
-                }">
+                        name: 'book.edit',
+                        params: { id: activeBook._id },
+                    }">
                         <button type="button" class="mt-2 btn btn-warning">
                             <i class="fas fa-edit"></i> Hiệu chỉnh
                         </button>
