@@ -45,7 +45,7 @@ export default {
         async updatePublish(data) {
             try {
                 await PublishService.update(this.publish._id, data);
-                this.message = "Người dùng được cập nhật thành công.";
+                alert("Người dùng được cập nhật thành công.");
                 this.$router.push({ name: "publishpage" });
             } catch (error) {
                 console.log(error);

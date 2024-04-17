@@ -25,7 +25,7 @@ export default {
         async addPublish(data) {
             try {
                 await PublishService.create(data);
-                window.alert("Nhà xuất bản được thêm thành công.");
+                alert("Nhà xuất bản được thêm thành công.");
                 this.$router.push({ name: "publishpage" });
             } catch (error) {
                 console.log(error);

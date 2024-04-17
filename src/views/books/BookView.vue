@@ -10,18 +10,21 @@
                 </ol>
             </nav>
         </h6>
-        <h4> Hiệu chỉnh Liên hệ </h4>
-        <BookForm :book="book" @submit:book="updateBook" />
+        <h4>
+            <i class="fa fa-book" aria-hidden="true"></i>
+            Chi tiết Sách
+        </h4>
+        <BookCard :book="book" />
     </div>
 </template>
 
 <script>
-import BookForm from "@/components/books/BookForm.vue";
+import BookCard from "@/components/books/BookCard.vue";
 import BookService from "@/services/book.service";
 
 export default {
     components: {
-        BookForm,
+        BookCard,
     },
     props: {
         id: { type: String, required: true },
@@ -47,15 +50,6 @@ export default {
                     query: this.$route.query,
                     hash: this.$route.hash,
                 });
-            }
-        },
-        async updateBook(data) {
-            try {
-                await BookService.update(this.book._id, data);
-                alert("Sách được cập nhật thành công.");
-                this.$router.push({ name: "bookstore" });
-            } catch (error) {
-                console.log(error);
             }
         },
     },

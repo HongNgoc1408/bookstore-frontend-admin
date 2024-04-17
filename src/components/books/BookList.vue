@@ -1,16 +1,67 @@
 <template>
-    <ul class="list-group">
-        <li class="list-group-item list-group-item-action list-group-item-secondary" v-for="(book, index) in books"
-            :key="book._id" :class="{ active: index === activeIndex }" @click="updateActiveIndex(index)"
-            @delete:book="deleteBook(book)">
-            {{ book.name }}
-            <span class="d-flex m-0 p-0" v-if="book._id">
-                <button type="button" class="ms-auto btn btn-danger" @click.stop="deleteBook(book)">
-                    Xóa
-                </button>
-            </span>
-        </li>
-    </ul>
+    <table class="table overflow-auto ">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Ảnh</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Tác giả</th>
+                <th scope="col" class="text-nowrap">Nhà xuất bản</th>
+                <th scope="col" class="text-nowrap">Năm xuất bản</th>
+                <th scope="col" class="text-nowrap">Thể loại</th>
+                <th scope="col" class="text-nowrap">SL trong kho</th>
+                <th scope="col" class="text-nowrap">SL đã mượn</th>
+                <th scope="col" class="text-nowrap">Mô tả</th>
+                <th scope="col" class="text-nowrap">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(book, index) in books" :key="book._id" :class="{ active: index === activeIndex }"
+                @click="updateActiveIndex(index)" @delete:book="deleteBook(book)">
+                <th scope="row">{{ index + 1 }}</th>
+                <td>
+                    <img v-if="book.image" v-bind:src="book.image" alt="" class="w-100">
+                    <span v-else class="fas fa-times"></span>
+                </td>
+                <td scope="row"> {{ book.name }}</td>
+                <td scope="row"> {{ book.author }}</td>
+                <td scope="row"> {{ book.publisher }}</td>
+                <td scope="row">{{ book.year }}</td>
+                <td scope="row"> {{ book.type }}</td>
+                <td scope="row">{{ book.countInStock }}</td>
+                <td scope="row">{{ book.quantity }}</td>
+                <td scope="row" class="text-truncate" style="max-width: 150px;"> {{ book.description }}</td>
+                <td scope="row">
+                    <div class="col my-2">
+                        <router-link :to="{
+                            name: 'book.view',
+                            params: { id: book._id },
+                        }" class="me-2">
+                            <button type="button" class="mx-2 btn btn-primary">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </router-link>
+                    </div>
+                    <div class="col my-2">
+                        <router-link :to="{
+                            name: 'book.edit',
+                            params: { id: book._id },
+                        }" class="me-2">
+                            <button type="button" class="mx-2 btn btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </router-link>
+                    </div>
+                    <div class="col my-2">
+                        <button type="button" class="mx-2 btn btn-danger" @click.stop="deleteBook(book)">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </template>
 
 <script>
@@ -30,7 +81,7 @@ export default {
             if (confirm("Bạn muốn xóa sách này?")) {
                 try {
                     await bookService.delete(book._id);
-                    this.$emit("delete:book", book); 
+                    this.$emit("delete:book", book);
                 } catch (error) {
                     console.log(error);
                 }

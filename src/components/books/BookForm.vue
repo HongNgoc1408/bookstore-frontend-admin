@@ -46,13 +46,7 @@
             <ErrorMessage name="description" class="error-feedback" />
         </div>
 
-        <div class="form-group form-check">
-            <input name="favorite" type="checkbox" class="form-check-input" v-model="bookLocal.favorite" />
-            <label for="favorite" class="form-check-label">
-                <strong> Sách yêu thích</strong>
-            </label>
-        </div>
-        <div class="form-group">
+        <div class="form-group my-3">
             <button class="btn btn-primary form-control" @click="submitBook">
                 <i class="fas fa-save"></i> Lưu
             </button>

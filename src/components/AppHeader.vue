@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light text-semibold" style="background-color: bisque;">
+    <nav class="navbar navbar-expand-lg navbar-light fw-semibold" style="background-color: bisque;">
         <div class="container">
             <router-link :to="{ name: 'bookstore' }" class="navbar-brand nav-link">
                 Quản lý kho sách
@@ -31,7 +31,7 @@
 
                 </ul>
 
-                <div class="d-flex dropdown">
+                <div class="d-flex dropdown fw-semibold">
                     <router-link v-if="userName" to="#" class="btn btn-outline-warning text-dark me-2"
                         @click="confirmLogout">
                         {{ userName }}

@@ -19,6 +19,12 @@ const routes = [
   },
   {
     path: "/admin/books/:id",
+    name: "book.view",
+    component: () => import("@/views/books/BookView.vue"),
+    props: true,
+  },
+  {
+    path: "/admin/books/:id",
     name: "book.edit",
     component: () => import("@/views/books/BookEdit.vue"),
     props: true,

@@ -21,7 +21,7 @@
             <!-- </div> -->
         </div>
         <div class="row">
-            <div class="mt-3 col-6">
+            <div class="mt-3 col">
                 <h4>
                     <i class="fa fa-th-list" aria-hidden="true"></i>
                     Sách
@@ -30,23 +30,6 @@
                 <BookList :books="books" :activeIndex="activeIndex" @delete:book="handleDeleteBook"
                     v-if="filteredBooksCount > 0" books="filteredBooks" v-model:activeIndex="activeIndex" />
                 <p v-else>Không có sách nào.</p>
-            </div>
-            <div class="mt-3 col-6 gif-container">
-                <div v-if="activeBook">
-                    <h4>
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                        Chi tiết Sách
-                    </h4>
-                    <BookCard :book="activeBook" />
-                    <router-link :to="{
-                        name: 'book.edit',
-                        params: { id: activeBook._id },
-                    }">
-                        <button type="button" class="mt-2 btn btn-warning">
-                            <i class="fas fa-edit"></i> Hiệu chỉnh
-                        </button>
-                    </router-link>
-                </div>
             </div>
         </div>
     </div>
@@ -79,8 +62,8 @@ export default {
     computed: {
         bookStrings() {
             return this.books.map((book) => {
-                const { name, author, NXB, price, description, favorite } = book;
-                return [name, author, NXB, price, description, favorite].join("");
+                const { name, author, publisher, year, quantity, description, favorite } = book;
+                return [name, author, publisher, year, quantity, description, favorite].join("");
             });
         },
 

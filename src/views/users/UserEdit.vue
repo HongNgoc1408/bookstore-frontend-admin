@@ -1,9 +1,9 @@
 <template>
     <div v-if="user" class="container">
-        <h4 class="text-center">Hiệu chỉnh Liên hệ</h4>
+        <h4 class="text-center">Hiệu chỉnh người dùng</h4>
         <div class="col-md-6 mx-auto">
             <UserForm :user="user" @submit:user="updateUser" @delete:user="deleteUser" />
-            <p class="text-primary alert">{{ message }}</p>
+
         </div>
     </div>
 </template>
@@ -45,7 +45,7 @@ export default {
         async updateUser(data) {
             try {
                 await UserService.update(this.user._id, data);
-                this.message = "Người dùng được cập nhật thành công.";
+                alert("Người dùng được cập nhật thành công.");
                 this.$router.push({ name: "userpage" });
             } catch (error) {
                 console.log(error);
