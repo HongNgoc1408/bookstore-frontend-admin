@@ -16,19 +16,16 @@
                             Quản lý người dùng
                         </router-link>
                     </li>
-
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'borrowed', params: { id: userId }, }" class="nav-link">
-                            Quản lý sách mượn
-                        </router-link>
-                    </li>
-
                     <li class="nav-item">
                         <router-link :to="{ name: 'publishpage' }" class="nav-link">
                             Quản lý nhà xuất bản
                         </router-link>
                     </li>
-
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'borrowed', params: { id: userId }, }" class="nav-link">
+                            Quản lý mượn sách
+                        </router-link>
+                    </li>
                 </ul>
 
                 <div class="d-flex dropdown fw-semibold">

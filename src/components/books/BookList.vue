@@ -9,8 +9,8 @@
                 <th scope="col" class="text-nowrap">Nhà xuất bản</th>
                 <th scope="col" class="text-nowrap">Năm xuất bản</th>
                 <th scope="col" class="text-nowrap">Thể loại</th>
-                <th scope="col" class="text-nowrap">SL trong kho</th>
-                <th scope="col" class="text-nowrap">SL đã mượn</th>
+                <th scope="col" class="text-nowrap">Trong kho</th>
+                <th scope="col" class="text-nowrap">Đã mượn</th>
                 <th scope="col" class="text-nowrap">Mô tả</th>
                 <th scope="col" class="text-nowrap">Hành động</th>
             </tr>
@@ -59,7 +59,6 @@
                     </div>
                 </td>
             </tr>
-
         </tbody>
     </table>
 </template>

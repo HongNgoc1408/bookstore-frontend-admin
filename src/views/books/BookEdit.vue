@@ -10,7 +10,7 @@
                 </ol>
             </nav>
         </h6>
-        <h4> Hiệu chỉnh Liên hệ </h4>
+        <h4> Hiệu chỉnh sách </h4>
         <BookForm :book="book" @submit:book="updateBook" />
     </div>
 </template>

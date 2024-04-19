@@ -8,15 +8,24 @@
                         :data-bs-target="'#collapse_' + borrow._id" aria-expanded="true"
                         aria-controls="'collapse_' + borrow._id">
                         <div class="d-flex w-100 justify-content-between list-group-item">
-                            <h5 class="mb-1">{{ borrow.name }} - {{ borrow.userId }}</h5>
-                            <h6>Mượn: {{ borrow.ngayMuon }} đến {{ borrow.ngayTra }}</h6>
+                            <span class="col">
+                                <h5 class="mb-1">Mã đơn mượn: {{ borrow._id }}</h5>
+                                <h6>Tên người mượn: {{ borrow.name }}</h6>
+                                <h6>Mã số: {{ borrow.userId }}</h6>
+                            </span>
+                            <span class="col">
+                                <h6>Ngày mượn: {{ borrow.ngayMuon }}</h6>
+                                <h6>Ngày trả: {{ borrow.ngayTra }}</h6>
+                            </span>
+
+
                             <p class="mb-1">
-                            <h6> Trạng thái:
+                            <h6>
                                 <span :class="{
                                     'text-warning': borrow.status === 'Đang đợi duyệt',
                                     'text-info': borrow.status === 'Đang mượn',
                                     'text-primary': borrow.status === 'Đã trả',
-                                    'text-danger': borrow.status === 'Đã hủy' || borrow.status === 'Quá hạn trả'
+                                    'text-danger': borrow.status === 'Đã hủy' || borrow.status === 'Quá hạn'
                                 }">
                                     {{ borrow.status }}
                                 </span>
@@ -40,8 +49,8 @@
                             </div>
                             <div class="col-2 d-flex justify-content-end align-items-center">
                                 <router-link :to="{ name: 'borrow.edit', params: { id: borrow._id }, }">
-                                    <button class="btn btn-sm btn-success" style="white-space: nowrap;">
-                                        <i class="fas fa-plus"></i> Hiệu chỉnh
+                                    <button class="btn btn-warning" style="white-space: nowrap;">
+                                        <i class="fas fa-edit"></i> Hiệu chỉnh
                                     </button>
                                 </router-link>
                             </div>
@@ -66,10 +75,11 @@ export default {
             return this.borrows.slice().sort((a, b) => {
                 const statusOrder = {
                     'Đang đợi duyệt': 1,
-                    'Quá hạn trả': 2,
+                    'Quá hạn': 2,
                     'Đang mượn': 3,
                     'Đã trả': 4,
                     'Đã hủy': 5,
+
                 };
                 return statusOrder[a.status] - statusOrder[b.status];
             });

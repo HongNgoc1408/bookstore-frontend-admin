@@ -43,29 +43,31 @@ export default {
                 });
             }
         },
+
         async updateBorrow(data) {
             try {
-
-                if (data.status === 'Đang mượn') {
+                console.log(data.status);
+                if (data.status === 'Đã trả') {
                     for (const book of data.books) {
                         const bookDetails = await bookService.get(book.bookId);
-                        if (bookDetails && (bookDetails.countInStock > 0)) {
-                            const updatedCountInStock = bookDetails.countInStock - book.quantity;
-                            const updatedQuantity = bookDetails.quantity + book.quantity;
-                            await bookService.update(book.bookId, { countInStock: updatedCountInStock, quantity: updatedQuantity });
-                        }
-                    }
-                } else if (data.status === 'Đã trả') {
-                    for (const book of data.books) {
-                        const bookDetails = await bookService.get(book.bookId);
-
+                        console.log("bookDetails", bookDetails);
                         if (bookDetails && (bookDetails.quantity > 0)) {
                             const updatedCountInStock = bookDetails.countInStock + book.quantity;
+                            console.log("updatedCountInStock", updatedCountInStock);
                             const updatedQuantity = bookDetails.quantity - book.quantity;
+                            console.log("updatedQuantity", updatedQuantity);
                             await bookService.update(book.bookId, { countInStock: updatedCountInStock, quantity: updatedQuantity });
                         }
                     }
                 }
+
+                const returnDate = new Date(data.ngayTra);
+                const currentDate = new Date();
+                // console.log(currentDate)
+                if (returnDate < currentDate) {
+                    data.status = 'Quá hạn';
+                }
+
                 await BorrowService.update(this.borrow._id, data);
                 alert("Thông tin đã được thay đổi.");
                 this.$router.push({ name: "borrowed" });

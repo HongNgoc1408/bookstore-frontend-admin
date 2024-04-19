@@ -1,7 +1,11 @@
 <template>
-    <div class="col-md-4 offset-md-4">
-        <FormLogin @submit:login="loginUser" />
-        <p class="text-primary">{{ message }}</p>
+    <div class="container">
+        <div class="card col-md-5 rounded">
+            <div class="card-body">
+                <FormLogin @submit:login="loginUser" />
+            </div>
+
+        </div>
     </div>
 </template>
 
@@ -35,10 +39,10 @@ export default {
                     localStorage.setItem('userName', user.name);
 
                 } else {
-                    this.message = 'Bạn không có quyền truy cập.';
+                    alert('Bạn không có quyền truy cập.');
                 }
             } catch (error) {
-                this.message = 'Đăng nhập không thành công: ' + error.message;
+                alert('Đăng nhập không thành công: ' + error.message);
             }
         }
     },

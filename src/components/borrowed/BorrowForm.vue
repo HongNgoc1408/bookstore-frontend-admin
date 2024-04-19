@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card rounded">
         <Form @submit="submitBorrow" :validation-schema="borrowFormSchema" class="my-form">
             <div class="row">
                 <div class="col-md-4">
@@ -28,7 +28,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="col-md-8">
                     <div class="row" v-for="(book, index) in borrowLocal.books" :key="index">
                         <div class="col-md-9">
@@ -104,7 +104,7 @@ export default {
             statusOptions: [
                 { value: 'Đang đợi duyệt', text: 'Đang đợi duyệt' },
                 { value: 'Đang mượn', text: 'Đang mượn' },
-                { value: 'Quá hạn trả', text: 'Quá hạn trả' },
+                { value: 'Quá hạn', text: 'Quá hạn' },
                 { value: 'Đã trả', text: 'Đã trả' },
                 { value: 'Đã hủy', text: 'Đã hủy' }
             ],

@@ -23,9 +23,10 @@
                 <input type="checkbox" v-model="loginData.rememberMe"> Remember me
             </label>
         </div>
-
-        <button class="btn btn-primary btn-block" type="submit">Login</button>
-
+        <div class="form-group d-flex justify-content-center my-3">
+            <button class="col btn btn-warning text-dark" type="submit"> Đăng nhập
+            </button>
+        </div>
     </Form>
 </template>
 
