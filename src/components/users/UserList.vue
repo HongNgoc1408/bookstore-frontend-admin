@@ -1,5 +1,6 @@
 <template>
-    <ul class="list-group">
+    <button @click="exportToExcelUser">Export Excel</button>
+    <ul class="list-group mt-3">
         <li class="list-group-item list-group-item-action list-group-item-secondary" v-for="(user, index) in users"
             :key="user._id" :class="{ active: index === activeIndex }" @click="updateActiveIndex(index)"
             @delete:user="deleteUser(user)">
@@ -15,6 +16,8 @@
 
 <script>
 import userService from '@/services/user.service';
+import XLSX from 'xlsx';
+
 export default {
     props: {
         users: { type: Array, default: [] },
@@ -35,6 +38,28 @@ export default {
                     console.log(error);
                 }
             }
+        },
+        exportToExcelUser() {
+
+            const data = [
+                ["STT", "Tên", "Email", "SĐT", " Địa chỉ"]
+            ];
+
+            this.users.forEach((user, index) => {
+                const rowData = [
+                    index + 1,
+                    user.name,
+                    user.email,
+                    user.phone,
+                    user.address,
+                ];
+                data.push(rowData);
+            });
+
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, 'users.xlsx');
         }
     }
 };

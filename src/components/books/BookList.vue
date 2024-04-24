@@ -1,4 +1,5 @@
 <template>
+    <button @click="exportToExcel">Export Excel</button>
     <table class="table overflow-auto ">
         <thead>
             <tr>
@@ -65,6 +66,7 @@
 
 <script>
 import bookService from '@/services/book.service';
+import XLSX from 'xlsx';
 
 export default {
     props: {
@@ -85,6 +87,32 @@ export default {
                     console.log(error);
                 }
             }
+        },
+        exportToExcel() {
+            const data = [
+                ["STT", "Ảnh", "Tên", "Tác giả", "Nhà xuất bản", "Năm xuất bản", "Thể loại", "Trong kho", "Đã mượn"]
+            ];
+
+            this.books.forEach((book, index) => {
+                const rowData = [
+                    index + 1,
+                    book.image ? book.image : "",
+                    book.name,
+                    book.author,
+                    book.publisher,
+                    book.year,
+                    book.type,
+                    book.countInStock,
+                    book.quantity,
+
+                ];
+                data.push(rowData);
+            });
+
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, 'books.xlsx');
         }
     }
 };
