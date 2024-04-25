@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="exportToExcelBorrow">Export Excel</button>
+        <button @click="exportToExcelBorrow"  class="btn btn-warning">Export Excel</button>
         <div class="mt-3">
             <div v-for="(borrow) in sortedBorrows" :key="borrow._id" class="accordion" :id="'accordion_' + borrow._id">
                 <div class="accordion-item">

@@ -5,7 +5,6 @@
                 <InputSearch v-model="searchText" />
             </div>
             <div class="col-5">
-                <!-- <div class="row"> -->
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-success" @click="goToAddBook">
                         <i class="fas fa-plus"></i> Thêm mới
@@ -18,7 +17,6 @@
                     </button>
                 </div>
             </div>
-            <!-- </div> -->
         </div>
         <div class="row">
             <div class="mt-3 col">
@@ -27,8 +25,10 @@
                     Sách
                 </h4>
 
-                <BookList :books="books" :activeIndex="activeIndex" @delete:book="handleDeleteBook"
-                    v-if="filteredBooksCount > 0" books="filteredBooks" v-model:activeIndex="activeIndex" />
+                <BookList v-if="filteredBooksCount > 0" :books="filteredBooks" :activeIndex="activeIndex"
+                    @delete:book="handleDeleteBook" />
+                <BookList v-else :books="books" :activeIndex="activeIndex" @delete:book="handleDeleteBook" />
+
                 <p v-else>Không có sách nào.</p>
             </div>
         </div>
@@ -62,8 +62,8 @@ export default {
     computed: {
         bookStrings() {
             return this.books.map((book) => {
-                const { name, author, publisher, year, quantity, description, favorite } = book;
-                return [name, author, publisher, year, quantity, description, favorite].join("");
+                const { name, author, publisher, image, year, countInStock, quantity, type, description } = book;
+                return [name, author, publisher, image, year, countInStock, quantity, type, description].join("");
             });
         },
 

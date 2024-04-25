@@ -1,5 +1,5 @@
 <template>
-    <button @click="exportToExcelPublisher">Export Excel</button>
+    <button @click="exportToExcelPublisher"  class="btn btn-warning">Export Excel</button>
     <ul class="list-group  mt-3">
         <li class="list-group-item list-group-item-action list-group-item-secondary"
             v-for="(publish, index) in publishs" :key="publish._id" :class="{ active: index === activeIndex }"

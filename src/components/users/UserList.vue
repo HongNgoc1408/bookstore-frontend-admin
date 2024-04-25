@@ -1,5 +1,5 @@
 <template>
-    <button @click="exportToExcelUser">Export Excel</button>
+    <button @click="exportToExcelUser" class="btn btn-warning">Export Excel</button>
     <ul class="list-group mt-3">
         <li class="list-group-item list-group-item-action list-group-item-secondary" v-for="(user, index) in users"
             :key="user._id" :class="{ active: index === activeIndex }" @click="updateActiveIndex(index)"

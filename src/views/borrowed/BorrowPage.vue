@@ -8,6 +8,7 @@
                 <i class="fas fa-clipboard mr-2"></i> Đơn mượn sách
             </h4>
             <BorrowList v-if="filteredBorrowsCount > 0" :borrows="filteredBorrows" v-model:activeIndex="activeIndex" />
+            <BorrowList v-else :borrows="borrows" v-model:activeIndex="activeIndex" />
             <p v-else class="text-muted" style="min-width: 750px;">Không có đơn mượn nào.</p>
         </div>
     </div>
@@ -39,8 +40,8 @@ export default {
     computed: {
         borrowStrings() {
             return this.borrows.map((borrow) => {
-                const { name, status } = borrow;
-                return [name, status].join("");
+                const { _id, userId, ngayMuon, ngayTra, name, status } = borrow;
+                return [_id, userId, ngayMuon, ngayTra, name, status].join("");
             });
         },
         filteredBorrows() {

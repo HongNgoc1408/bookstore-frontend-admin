@@ -10,8 +10,11 @@
                 </ol>
             </nav>
         </h6>
-        <h4> Hiệu chỉnh sách </h4>
-        <BookForm :book="book" @submit:book="updateBook" />
+        <h4 class="text-center"> Hiệu chỉnh sách </h4>
+        <div class="col-6 offset-3">
+            <BookForm :book="book" @submit:book="updateBook" />
+        </div>
+
     </div>
 </template>
 

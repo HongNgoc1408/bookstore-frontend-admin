@@ -47,7 +47,7 @@
         </div>
 
         <div class="form-group my-3">
-            <button class="btn btn-primary form-control" @click="submitBook">
+            <button class="btn btn-warning form-control" @click="submitBook">
                 <i class="fas fa-save"></i> Lưu
             </button>
         </div>

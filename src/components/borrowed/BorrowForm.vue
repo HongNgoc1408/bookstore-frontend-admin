@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary me-1" type="submit" @click="submitBorrow">
+                    <button class="btn btn-warning me-1" type="submit" @click="submitBorrow">
                         <i class="fas fa-save"></i> Lưu
                     </button>
                 </div>

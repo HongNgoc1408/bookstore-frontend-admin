@@ -1,5 +1,5 @@
 <template>
-    <button @click="exportToExcel">Export Excel</button>
+    <button @click="exportToExcel" class="btn btn-warning">Export Excel</button>
     <table class="table overflow-auto ">
         <thead>
             <tr>

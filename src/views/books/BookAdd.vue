@@ -10,9 +10,12 @@
                 </ol>
             </nav>
         </h6>
-        <h4>Thêm Sách</h4>
-        <BookForm :book="newBook" @submit:book="addBook" />
+        <h4 class="text-center">Thêm Sách</h4>
+        <div class="col-6 offset-3">
+            <BookForm :book="newBook" @submit:book="addBook" />
+        </div>
     </div>
+
 </template>
 
 <script>

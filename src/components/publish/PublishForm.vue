@@ -18,7 +18,7 @@
         <hr class="mb-4" />
 
         <div class="form-group">
-            <button class="btn btn-primary form-control">
+            <button class="btn btn-warning form-control">
                 <i class="fas fa-save"></i> Lưu
             </button>
         </div>
